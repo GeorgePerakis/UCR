@@ -32,7 +32,7 @@ uv1_triplanar = true
 environment = SubResource("Environment_jgwn8")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.749869, 0.106983, -0.65288, 0, 0.986839, 0.161707, 0.661587, -0.121259, 0.74, 0, 3.86861, 4.4456)
+transform = Transform3D(1, 0, 0, 0, 0.979452, 0.201676, 0, -0.201676, 0.979452, 4.85602, 3.21262, 6.34891)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.733635, 0.115244, -0.6697, 0, 0.985515, 0.16959, 0.679544, -0.124417, 0.723008, 0, 3.93824, 4.06678)
@@ -54,4 +54,4 @@ polygon = PackedVector2Array(0, 0, -0.0231583, -0.0021894, 4.53276, 1.38139, 3.6
 material = SubResource("StandardMaterial3D_68or1")
 
 [node name="Car" parent="." instance=ExtResource("4_mkvtg")]
-transform = Transform3D(0.984561, -0.17504, 0, 0.17504, 0.984561, 0, 0, 0, 1, 0, 2.92717, 0)
+transform = Transform3D(0.0729422, 0, -0.997336, 0, 1, 0, 0.997336, 0, 0.0729422, 4.54506, 3.32535, 2.16156)
