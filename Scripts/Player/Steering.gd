@@ -1,6 +1,9 @@
 extends Node
 class_name Steering
 
+@onready var PhysicsScript = preload("res://Scripts/Utils/PhysicsFunctions.gd")  
+@onready var PhysicsFunctionsInstance: PhysicsFunctions = PhysicsFunctions.new()
+
 var target_angle : float = CENTER_ROTATION
 var current_angle : float
 var rotation_speed = 100.0 
@@ -31,3 +34,21 @@ func RotateWheels(suspensions):
 	else:
 		suspensions["front_left"]["wheel"].rotation_degrees.y = rad_to_deg(target_angle)
 		suspensions["front_right"]["wheel"].rotation_degrees.y = rad_to_deg(target_angle)
+
+func ApplySteeringForce(delta,suspensions,car):
+	for key in suspensions:
+		var suspension = suspensions[key]
+		var wheel = suspension["wheel"]
+		
+		var wheel_x_axis = wheel.global_transform.basis.y.normalized()
+		var wheel_velocity = PhysicsFunctionsInstance.GetVelocityatLocalPosition(car,wheel.position)
+		
+		var force = (-wheel_velocity.dot(wheel_x_axis) * wheel_x_axis) / delta * 0.1
+		
+		car.apply_force(force, wheel.global_position)
+		
+		DrawLine3d.DrawRay(
+				wheel.global_position,
+				force,
+				Color.RED
+			)

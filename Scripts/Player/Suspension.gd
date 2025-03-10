@@ -36,7 +36,7 @@ func ApplySuspensionForce(delta,suspensions,car):
 			DrawLine3d.DrawRay(
 				origin,
 				(force - (origin - car.global_position)).normalized(),
-				Color.RED
+				Color.GREEN
 			)
 		else:
 			wheel.position = -Vector3(0, suspension_length - wheel_radius, 0)
