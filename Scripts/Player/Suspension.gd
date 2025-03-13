@@ -1,22 +1,25 @@
 extends Node3D
 class_name Suspension
 
-@export var suspension_length : float = 1.0
-var suspension_strength : float = 350
+@export var suspension_length : float = 0.7
+var suspension_strength : float = 850
 var damping_strength : float = 50
 var wheel_radius : float = 0.5
 
 func ApplySuspensionForce(delta,suspensions,car):
 	for key in suspensions:
 		var suspension = suspensions[key]
+		var wheel = suspension["wheel"]
 		var raycast = suspension["raycast"]
 		var previous_position = suspension["length"]
-		var wheel = suspension["wheel"]
 		
 		var origin = raycast.global_position
 		var collision_point = raycast.get_collision_point()
 		
 		var current_length = origin.distance_to(collision_point)
+		
+		if current_length > suspension_length:
+			current_length = suspension_length
 		
 		var compression_ratio = suspension_length - current_length
 		var force_direction = raycast.global_transform.basis.y.normalized()

@@ -6,19 +6,24 @@ var SteeringInstance: Steering
 @onready var SuspensionScript = preload("res://Scripts/Player/Suspension.gd")  
 var SuspensionInstance: Suspension
 
+@onready var AccelerationScript = preload("res://Scripts/Player/Acceleration.gd")  
+var AccelerationInstance: Acceleration
+
 @onready var car: RigidBody3D = $Body
 var suspensions: Dictionary
 
 func _ready():
 	InitScripts()
 	InitCar()
+	Engine.time_scale = 1
 
 func _physics_process(delta):
 	SuspensionInstance.ApplySuspensionForce(delta,suspensions,car)
 	SteeringInstance.ApplySteeringForce(delta,suspensions,car)
+	AccelerationInstance.HandleAcceleration(delta,suspensions,car)
 
 func _input(_event):
-	SteeringInstance.HandleInput(suspensions)
+	SteeringInstance.HandleSteering(suspensions)
 
 func InitCar():
 	suspensions = {
@@ -42,3 +47,6 @@ func InitScripts():
 	
 	SuspensionInstance = SuspensionScript.new() 
 	self.add_child(SuspensionInstance) 
+	
+	AccelerationInstance = AccelerationScript.new() 
+	self.add_child(AccelerationInstance) 

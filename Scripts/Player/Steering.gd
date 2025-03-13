@@ -8,11 +8,11 @@ var target_angle : float = CENTER_ROTATION
 var current_angle : float
 var rotation_speed = 100.0 
 
-const LEFT_ROTATION = deg_to_rad(-30)
-const RIGHT_ROTATION = deg_to_rad(30)
-const CENTER_ROTATION = deg_to_rad(90)
+const LEFT_ROTATION = deg_to_rad(-50)
+const RIGHT_ROTATION = deg_to_rad(-130)
+const CENTER_ROTATION = deg_to_rad(-90)
 
-func HandleInput(suspensions):
+func HandleSteering(suspensions):
 	if Input.is_action_just_pressed("left") and (target_angle == LEFT_ROTATION or target_angle == CENTER_ROTATION):
 		target_angle = LEFT_ROTATION
 		RotateWheels(suspensions)
@@ -39,16 +39,23 @@ func ApplySteeringForce(delta,suspensions,car):
 	for key in suspensions:
 		var suspension = suspensions[key]
 		var wheel = suspension["wheel"]
+		var raycast = suspension["raycast"]
+		var wheel_x_axis
 		
-		var wheel_x_axis = wheel.global_transform.basis.y.normalized()
+		if key == "front_left" || key == "rear_left":
+			wheel_x_axis = wheel.global_transform.basis.y.normalized()
+		else:
+			wheel_x_axis = -wheel.global_transform.basis.y.normalized()
+		
 		var wheel_velocity = PhysicsFunctionsInstance.GetVelocityatLocalPosition(car,wheel.position)
 		
-		var force = (-wheel_velocity.dot(wheel_x_axis) * wheel_x_axis) / delta * 0.1
+		var force = (-(wheel_velocity.dot(wheel_x_axis) * wheel_x_axis) * car.mass) / delta * 0.02
 		
-		car.apply_force(force, wheel.global_position)
+		if raycast.is_colliding():
+			car.apply_force(force * 0.6, wheel.global_position - car.global_position)
 		
 		DrawLine3d.DrawRay(
 				wheel.global_position,
-				force,
+				wheel_velocity.dot(wheel_x_axis) * wheel_x_axis,
 				Color.RED
 			)
