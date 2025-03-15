@@ -2,8 +2,8 @@ extends Node3D
 class_name Suspension
 
 @export var suspension_length : float = 0.7
-var suspension_strength : float = 850
-var damping_strength : float = 50
+var suspension_strength : float = 1850
+var damping_strength : float = 90
 var wheel_radius : float = 0.5
 
 func ApplySuspensionForce(delta,suspensions,car):
@@ -42,4 +42,5 @@ func ApplySuspensionForce(delta,suspensions,car):
 				Color.GREEN
 			)
 		else:
-			wheel.position = -Vector3(0, suspension_length - wheel_radius, 0)
+			var target_wheel_position = raycast.global_position - raycast.global_transform.basis.y * (suspension_length - wheel_radius)
+			wheel.global_position = wheel.global_position.lerp(target_wheel_position, 0.1)

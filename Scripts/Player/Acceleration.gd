@@ -8,16 +8,17 @@ func HandleAcceleration(delta,suspensions,car):
 				var suspension = suspensions[key]
 				var wheel = suspension["wheel"]
 				var raycast = suspension["raycast"]
-				var wheel_z_axis = -wheel.global_transform.basis.x.normalized()
-				
-				#wheel_z_axis.y = 0
-				#wheel_z_axis = wheel_z_axis.normalized()
+				var car_z_axis = car.global_transform.basis.z.normalized()
+				car_z_axis.y = 0
+				car_z_axis = car_z_axis.normalized()
 				
 				if raycast.is_colliding():
-					car.apply_force((40 * wheel_z_axis * car.mass), wheel.global_position - car.global_position)
+					var local_offset = Vector3(0, -0.2, 0.3) 
+					var global_offset = car.global_transform.origin + car.global_transform.basis * local_offset
+					car.apply_force((80 * car_z_axis * car.mass), global_offset - car.global_position)
 				
-				DrawLine3d.DrawRay(
-						wheel.global_position,
-						10 * wheel_z_axis,
-						Color.BLUE
-					)
+					DrawLine3d.DrawRay(
+							car.global_transform.origin + car.global_transform.basis * Vector3(0, 0.1, 0.1),
+							10 * car_z_axis,
+							Color.BLUE
+						)

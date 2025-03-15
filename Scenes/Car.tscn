@@ -13,7 +13,7 @@ size = Vector3(1.00482, 0.246159, 2.00996)
 script = ExtResource("1_ebsmb")
 
 [node name="Body" type="RigidBody3D" parent="."]
-mass = 30.0
+mass = 40.0
 
 [node name="Chasis" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 2, 0, 0, 0)

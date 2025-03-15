@@ -49,10 +49,13 @@ func ApplySteeringForce(delta,suspensions,car):
 		
 		var wheel_velocity = PhysicsFunctionsInstance.GetVelocityatLocalPosition(car,wheel.position)
 		
-		var force = (-(wheel_velocity.dot(wheel_x_axis) * wheel_x_axis) * car.mass) / delta * 0.02
+		var force = (-(wheel_velocity.dot(wheel_x_axis) * wheel_x_axis) * car.mass) / delta * 0.04
 		
 		if raycast.is_colliding():
-			car.apply_force(force * 0.6, wheel.global_position - car.global_position)
+			if key == "front_left" || key == "front_right":
+				car.apply_force(force * 0.6, wheel.global_position - car.global_position)
+			else:
+				pass#car.apply_force(force * 0.6, wheel.global_position - car.global_position)
 		
 		DrawLine3d.DrawRay(
 				wheel.global_position,

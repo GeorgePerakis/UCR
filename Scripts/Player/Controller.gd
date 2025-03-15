@@ -34,7 +34,7 @@ func InitCar():
 	}
 	
 	car.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-	car.set_center_of_mass(Vector3(0, -0.5, 0))
+	car.set_center_of_mass(Vector3(0, -0.2, 0))
 	
 	for key in suspensions:
 		var suspension = suspensions[key]
