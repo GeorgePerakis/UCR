@@ -47,7 +47,7 @@ use_collision = true
 
 [node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.23226, 1.39501, 0.742152, 3.23212)
-polygon = PackedVector2Array(0, 0, -0.0231583, -0.0021894, 12.1256, 3.63106, 3.6161, 0.0816014)
+polygon = PackedVector2Array(0, 0, -0.0231583, -0.0021894, 12.1056, 2.24998, 3.6161, 0.0816014)
 material = SubResource("StandardMaterial3D_68or1")
 
 [node name="Car" parent="." instance=ExtResource("4_mkvtg")]

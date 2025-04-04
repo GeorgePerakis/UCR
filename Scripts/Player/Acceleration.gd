@@ -1,24 +1,37 @@
 extends Node3D
 class_name Acceleration
 
-func HandleAcceleration(delta,suspensions,car):
+var forward_force = 9000
+var max_speed = 20
+var force_multiplier
+
+func HandleAcceleration(delta,suspensions,car,curve):
 	if Input.is_action_pressed("forward"):
 		for key in suspensions:
+			var velocity = car.linear_velocity
+			var speed = velocity.dot(car.global_transform.basis.z)
+			var car_z_axis = car.global_transform.basis.z.normalized()
+			
 			if key == "rear_left" || key == "rear_right":
 				var suspension = suspensions[key]
 				var wheel = suspension["wheel"]
 				var raycast = suspension["raycast"]
-				var car_z_axis = car.global_transform.basis.z.normalized()
-				car_z_axis.y = 0
-				car_z_axis = car_z_axis.normalized()
+				
 				
 				if raycast.is_colliding():
-					var local_offset = Vector3(0, -0.2, 0.3) 
-					var global_offset = car.global_transform.origin + car.global_transform.basis * local_offset
-					car.apply_force((80 * car_z_axis * car.mass), global_offset - car.global_position)
+					var normalized_speed = clamp(speed / max_speed, 0.0, 1.0)
+					
+					if(normalized_speed != 1):
+						force_multiplier = curve.sample(normalized_speed)
+					else:
+						force_multiplier = 0
+					
+					var force = forward_force * force_multiplier
+					
+					car.apply_force((force * car_z_axis), wheel.global_position - car.global_position)
 				
-					DrawLine3d.DrawRay(
-							car.global_transform.origin + car.global_transform.basis * Vector3(0, 0.1, 0.1),
-							10 * car_z_axis,
-							Color.BLUE
-						)
+	DrawLine3d.DrawRay(
+			car.global_position,
+			car.linear_velocity.dot(car.global_transform.basis.z) * car.global_transform.basis.z.normalized(),
+			Color.BLUE
+		)

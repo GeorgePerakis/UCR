@@ -1,5 +1,7 @@
 extends Node3D
 
+@export var curve: Curve
+
 @onready var SteeringScript = preload("res://Scripts/Player/Steering.gd")  
 var SteeringInstance: Steering 
 
@@ -20,7 +22,7 @@ func _ready():
 func _physics_process(delta):
 	SuspensionInstance.ApplySuspensionForce(delta,suspensions,car)
 	SteeringInstance.ApplySteeringForce(delta,suspensions,car)
-	AccelerationInstance.HandleAcceleration(delta,suspensions,car)
+	AccelerationInstance.HandleAcceleration(delta,suspensions,car,curve)
 
 func _input(_event):
 	SteeringInstance.HandleSteering(suspensions)
@@ -34,7 +36,7 @@ func InitCar():
 	}
 	
 	car.center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-	car.set_center_of_mass(Vector3(0, -0.2, 0))
+	car.set_center_of_mass(Vector3(0, -0.4, 0))
 	
 	for key in suspensions:
 		var suspension = suspensions[key]

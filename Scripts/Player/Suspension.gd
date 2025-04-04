@@ -1,10 +1,10 @@
 extends Node3D
 class_name Suspension
 
-@export var suspension_length : float = 0.7
-var suspension_strength : float = 1850
-var damping_strength : float = 90
-var wheel_radius : float = 0.5
+@export var suspension_length : float = 0.5
+var suspension_strength : float = 95000
+var damping_strength : float = 2700
+var wheel_radius : float = 0.35
 
 func ApplySuspensionForce(delta,suspensions,car):
 	for key in suspensions:
@@ -33,7 +33,7 @@ func ApplySuspensionForce(delta,suspensions,car):
 		var force = suspension_force + damping_force
 		
 		if raycast.is_colliding():
-			car.apply_force(force, origin - car.global_position)
+			car.apply_force(Vector3(0,force.y,0), origin - car.global_position)
 			wheel.global_position = collision_point + Vector3(0, wheel_radius, 0)
 			
 			DrawLine3d.DrawRay(
