@@ -1,9 +1,11 @@
 extends Node3D
 class_name Acceleration
 
-var forward_force = 9000
-var max_speed = 20
+var engine_force = 9000
+var max_speed = 25
 var force_multiplier
+
+var local_offset = Vector3(0, 0, -4)
 
 func HandleAcceleration(delta,suspensions,car,curve):
 	if Input.is_action_pressed("forward"):
@@ -11,6 +13,8 @@ func HandleAcceleration(delta,suspensions,car,curve):
 			var velocity = car.linear_velocity
 			var speed = velocity.dot(car.global_transform.basis.z)
 			var car_z_axis = car.global_transform.basis.z.normalized()
+			car_z_axis.y = 0
+			car_z_axis = car_z_axis.normalized()
 			
 			if key == "rear_left" || key == "rear_right":
 				var suspension = suspensions[key]
@@ -26,9 +30,11 @@ func HandleAcceleration(delta,suspensions,car,curve):
 					else:
 						force_multiplier = 0
 					
-					var force = forward_force * force_multiplier
+					var force = engine_force * force_multiplier
 					
-					car.apply_force((force * car_z_axis), wheel.global_position - car.global_position)
+					var force_position = car.to_global(local_offset)
+					
+					car.apply_force((force * car_z_axis),force_position - car.global_position)
 				
 	DrawLine3d.DrawRay(
 			car.global_position,

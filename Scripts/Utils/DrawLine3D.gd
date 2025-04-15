@@ -29,9 +29,6 @@ func _draw():
 		var ScreenPointStart = Cam.unproject_position(Lines[i].Start)
 		var ScreenPointEnd = Cam.unproject_position(Lines[i].End)
 		
-		#Dont draw line if either start or end is considered behind the camera
-		#this causes the line to not be drawn sometimes but avoids a bug where the
-		#line is drawn incorrectly
 		if(Cam.is_position_behind(Lines[i].Start) ||
 			Cam.is_position_behind(Lines[i].End)):
 			continue
@@ -59,7 +56,6 @@ func DrawCube(Center, HalfExtents, LineColor, time = 0.0):
 	LinePointStart.y += HalfExtents
 	LinePointStart.z -= HalfExtents
 	
-	#Draw top square
 	var LinePointEnd = LinePointStart + Vector3(0, 0, HalfExtents * 2.0)
 	DrawLine(LinePointStart, LinePointEnd, LineColor, time);
 	LinePointStart = LinePointEnd
@@ -86,7 +82,6 @@ func DrawCube(Center, HalfExtents, LineColor, time = 0.0):
 	LinePointEnd = LinePointStart + Vector3(-HalfExtents * 2.0, 0, 0)
 	DrawLine(LinePointStart, LinePointEnd, LineColor, time);
 	
-	#Draw vertical lines
 	LinePointStart = LinePointEnd
 	DrawRay(LinePointStart, Vector3(0, HalfExtents * 2.0, 0), LineColor, time)
 	LinePointStart += Vector3(0, 0, HalfExtents * 2.0)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Player/Controller.gd" id="1_ebsmb"]
 
 [sub_resource type="Curve" id="Curve_xs6hk"]
-_data = [Vector2(0.129353, 0.472527), 0.0, 0.0, 0, 0, Vector2(0.313433, 1), 0.0, 0.0, 0, 0, Vector2(0.58209, 0.857143), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
+_data = [Vector2(0.129353, 0.472527), 0.0, 0.0, 0, 0, Vector2(0.169154, 1), 0.0, 0.0, 0, 0, Vector2(0.368159, 0.604396), 0.0, 0.0, 0, 0, Vector2(1, 0.230769), 0.0, 0.0, 0, 0]
 point_count = 4
 
 [sub_resource type="BoxMesh" id="BoxMesh_ls3np"]
@@ -18,7 +18,7 @@ script = ExtResource("1_ebsmb")
 curve = SubResource("Curve_xs6hk")
 
 [node name="Body" type="RigidBody3D" parent="."]
-mass = 1300.0
+mass = 1100.0
 
 [node name="Chasis" type="MeshInstance3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 2, 0, 0, 0)
@@ -31,18 +31,18 @@ shape = SubResource("BoxShape3D_rdhwh")
 
 [node name="Wheels" type="Node3D" parent="Body"]
 
-[node name="FL" type="RayCast3D" parent="Body/Wheels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.125, 1)
-
-[node name="Wheel" type="MeshInstance3D" parent="Body/Wheels/FL"]
-transform = Transform3D(-2.53526e-08, -0.054, 2.53526e-08, 0, -2.36041e-09, -0.58, 0.58, -2.36041e-09, 1.1082e-15, 0, -0.762289, 0.01111)
-mesh = SubResource("CylinderMesh_krrhi")
-
 [node name="FR" type="RayCast3D" parent="Body/Wheels"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.125, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.125, 1)
 
 [node name="Wheel" type="MeshInstance3D" parent="Body/Wheels/FR"]
 transform = Transform3D(-2.53526e-08, -0.054, 2.53526e-08, 0, -2.36041e-09, -0.58, 0.58, -2.36041e-09, 1.1082e-15, 0, -0.762289, 0.01111)
+mesh = SubResource("CylinderMesh_krrhi")
+
+[node name="FL" type="RayCast3D" parent="Body/Wheels"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.125, 1)
+
+[node name="Wheel" type="MeshInstance3D" parent="Body/Wheels/FL"]
+transform = Transform3D(-2.53526e-08, 0.054, -2.53526e-08, 0, -2.36041e-09, -0.58, -0.58, -2.36041e-09, 1.1082e-15, 0, -0.762289, 0.01111)
 mesh = SubResource("CylinderMesh_krrhi")
 
 [node name="BL" type="RayCast3D" parent="Body/Wheels"]
@@ -56,8 +56,8 @@ mesh = SubResource("CylinderMesh_krrhi")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.125, -1)
 
 [node name="Wheel" type="MeshInstance3D" parent="Body/Wheels/BR"]
-transform = Transform3D(-2.53526e-08, 0.054, -2.53526e-08, 0, -2.36041e-09, -0.58, -0.58, -2.36041e-09, 1.1082e-15, 0, -0.762289, 0.01111)
+transform = Transform3D(-2.53526e-08, -0.054, 2.53526e-08, 0, -2.36041e-09, -0.58, 0.58, -2.36041e-09, 1.1082e-15, 0, -0.762289, 0.01111)
 mesh = SubResource("CylinderMesh_krrhi")
 
 [node name="Camera3D" type="Camera3D" parent="Body"]
-transform = Transform3D(-1, -0.000100142, 0.000620353, 0.00012979, 0.933016, 0.359834, -0.000614834, 0.359834, -0.933016, 0.00322183, 0.928336, -2.65136)
+transform = Transform3D(-0.99824, 0, -0.0593063, 0, 1, 0, 0.0593063, 0, -0.99824, 0, 0.571811, -2.011)
