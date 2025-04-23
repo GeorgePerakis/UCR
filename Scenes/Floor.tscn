@@ -1,9 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://covf8tbwsajjr"]
+[gd_scene load_steps=9 format=3 uid="uid://covf8tbwsajjr"]
 
 [ext_resource type="Texture2D" uid="uid://dftxqejfv6sc2" path="res://Textures/Hazy_Afternoon_Backplate_001.png" id="1_fqavf"]
+[ext_resource type="PackedScene" uid="uid://df44jnt2620u2" path="res://Scripts/Enemy/Enemy.tscn" id="3_2d7r5"]
 [ext_resource type="Texture2D" uid="uid://cl2oal5g35f8l" path="res://Textures/prototype_512x512_grey4.png" id="3_6cp8e"]
-[ext_resource type="Texture2D" uid="uid://bw7s1civak65y" path="res://Textures/prototype_512x512_purple.png" id="4_gd0c6"]
-[ext_resource type="PackedScene" uid="uid://b8k6un11t7x6w" path="res://Scenes/Car.tscn" id="4_mkvtg"]
+[ext_resource type="PackedScene" uid="uid://b8k6un11t7x6w" path="res://Scripts/Player/Player.tscn" id="4_mkvtg"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_s2dqf"]
 panorama = ExtResource("1_fqavf")
@@ -22,10 +22,6 @@ ambient_light_energy = 2.68
 albedo_texture = ExtResource("3_6cp8e")
 uv1_triplanar = true
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_68or1"]
-albedo_texture = ExtResource("4_gd0c6")
-uv1_triplanar = true
-
 [node name="Node3D" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -42,13 +38,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.593155, 0.381835, -3.09814
 size = Vector3(543.156, 1, 357.359)
 material = SubResource("StandardMaterial3D_3odj7")
 
-[node name="CSGCombiner3D2" type="CSGCombiner3D" parent="."]
-use_collision = true
+[node name="Enemy" parent="." instance=ExtResource("3_2d7r5")]
+transform = Transform3D(0.937998, 0, -0.346641, 0, 1, 0, 0.346641, 0, 0.937998, 0, 2.03842, 5.55972)
 
-[node name="CSGPolygon3D" type="CSGPolygon3D" parent="CSGCombiner3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 4.23226, 1.39501, 0.742152, 3.23212)
-polygon = PackedVector2Array(0, 0, -0.0231583, -0.0021894, 12.1056, 2.24998, 3.6161, 0.0816014)
-material = SubResource("StandardMaterial3D_68or1")
-
-[node name="Car" parent="." instance=ExtResource("4_mkvtg")]
-transform = Transform3D(-0.999652, 0, 0.0263688, 0, 1, 0, -0.0263688, 0, -0.999652, 0, 4.34838, 0)
+[node name="Player" parent="." instance=ExtResource("4_mkvtg")]
+transform = Transform3D(0.907572, 0, 0.419896, 0, 1, 0, -0.419896, 0, 0.907572, 0, 2.03842, -5.92238)
