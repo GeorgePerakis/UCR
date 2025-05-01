@@ -2,13 +2,13 @@ extends Node3D
 
 @export var curve: Curve
 
-@onready var SteeringScript = preload("res://Scripts/CarBlueprint/Steering.gd")  
+@onready var SteeringScript = preload("res://Entities/CarBlueprint/Steering.gd")  
 var SteeringInstance: Steering 
 
-@onready var SuspensionScript = preload("res://Scripts/CarBlueprint/Suspension.gd")  
+@onready var SuspensionScript = preload("res://Entities/CarBlueprint/Suspension.gd")  
 var SuspensionInstance: Suspension
 
-@onready var AccelerationScript = preload("res://Scripts/CarBlueprint/Acceleration.gd")  
+@onready var AccelerationScript = preload("res://Entities/CarBlueprint/Acceleration.gd")  
 var AccelerationInstance: Acceleration
 
 @onready var car: RigidBody3D = $"."

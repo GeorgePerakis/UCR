@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="UCR"
-run/main_scene="res://Scenes/Floor.tscn"
+run/main_scene="res://Entities/Level1/Level.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 boot_splash/fullsize=false
@@ -19,7 +19,7 @@ boot_splash/use_filter=false
 
 [autoload]
 
-DrawLine3d="*res://Scripts/Utils/DrawLine3D.gd"
+DrawLine3d="*res://Entities/Utils/DrawLine3D.gd"
 
 [filesystem]
 

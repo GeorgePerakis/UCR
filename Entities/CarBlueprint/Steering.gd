@@ -1,7 +1,7 @@
 extends Node
 class_name Steering
 
-@onready var PhysicsScript = preload("res://Scripts/Utils/PhysicsFunctions.gd")  
+@onready var PhysicsScript = preload("res://Entities/Utils/PhysicsFunctions.gd")  
 @onready var PhysicsFunctionsInstance: PhysicsFunctions = PhysicsFunctions.new()
 
 var threeshold = 0.5
@@ -9,6 +9,7 @@ var threeshold = 0.5
 var is_drifting = false
 var turn_left = false
 var turn_right = false
+var is_ai = false
 
 var target_angle : float = CENTER_ROTATION
 var current_angle : float
@@ -18,24 +19,24 @@ var front_grip_default = 0.1
 var rear_grip_default = 0.7
 var front_grip_drift = 0.2
 var rear_grip_drift = 0.3
-var grip_lerp_speed = 10
+var grip_lerp_speed = 0.5
 
 var front_grip = front_grip_default
 var rear_grip = rear_grip_default
 
-var max_steering_force = 40
+var max_steering_force = 140
 
-const LEFT_ROTATION = deg_to_rad(-50)
-const RIGHT_ROTATION = deg_to_rad(-130)
-const CENTER_ROTATION = deg_to_rad(270)
+const LEFT_ROTATION = deg_to_rad(40)
+const RIGHT_ROTATION = deg_to_rad(-40)
+const CENTER_ROTATION = deg_to_rad(0)
 
 func _process(delta):
 	var target_front = front_grip_default
 	var target_rear = rear_grip_default
 	
-	if is_drifting:
-		target_front = front_grip_drift
-		target_rear = rear_grip_drift
+	if is_drifting and !is_ai:
+		front_grip = front_grip_drift
+		rear_grip = rear_grip_drift
 
 	front_grip = lerp(front_grip, target_front, grip_lerp_speed * delta)
 	rear_grip = lerp(rear_grip, target_rear, grip_lerp_speed * delta)
@@ -75,7 +76,7 @@ func ApplySteeringForce(delta,suspensions,car):
 			
 			var velocity_change
 			
-			var wheel_x_axis = wheel.global_transform.basis.y.normalized()
+			var wheel_x_axis = wheel.global_transform.basis.x.normalized()
 			
 			var wheel_velocity = PhysicsFunctionsInstance.GetVelocityatLocalPosition(car,wheel.position)
 			
