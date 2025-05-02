@@ -16,15 +16,15 @@ var current_angle : float
 var rotation_speed = 100.0 
 
 var front_grip_default = 0.1
-var rear_grip_default = 0.7
-var front_grip_drift = 0.2
-var rear_grip_drift = 0.3
-var grip_lerp_speed = 0.5
+var rear_grip_default = 0.3
+var front_grip_drift = 0.15
+var rear_grip_drift = 0.2
+var grip_lerp_speed = 2
 
 var front_grip = front_grip_default
 var rear_grip = rear_grip_default
 
-var max_steering_force = 140
+var max_steering_force = 80
 
 const LEFT_ROTATION = deg_to_rad(40)
 const RIGHT_ROTATION = deg_to_rad(-40)

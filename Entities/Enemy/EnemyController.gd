@@ -5,12 +5,12 @@ extends Node3D
 var player
 var target
 
-var turn_threshold = 0.3
+var turn_threshold = 0.1
 var drift_threshold = 0.8
 
 var path
 var path_follow
-var speed = 20
+var speed = 15
 
 func _ready():
 	init_enemy_scene()

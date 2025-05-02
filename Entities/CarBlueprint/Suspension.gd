@@ -2,8 +2,8 @@ extends Node3D
 class_name Suspension
 
 @export var suspension_length : float = 0.5
-var suspension_strength : float = 50000
-var damping_strength : float = 7500
+var suspension_strength : float = 70000
+var damping_strength : float = 8500
 var wheel_radius : float = 0.35
 
 func ApplySuspensionForce(delta,suspensions,car):
