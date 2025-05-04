@@ -77,10 +77,11 @@ transform = Transform3D(-1.05318, -1.10982, 1.33757e-07, -1.10982, 1.05318, 0, -
 [node name="Gun2" parent="Car/Machine_Guns" instance=ExtResource("6_t38ms")]
 transform = Transform3D(-1.0533, 1.10971, -2.31024e-07, 1.10971, 1.0533, 0, 1.59044e-07, -1.67562e-07, -1.53, 0.549712, 0.606398, -2.26059e-08)
 
-[node name="Camera3D" type="Camera3D" parent="Car"]
-transform = Transform3D(-0.999906, 0.00113331, 0.0136535, 0.00455864, 0.967309, 0.253558, -0.0129198, 0.253596, -0.967224, 0.0421485, 1.34724, -2.78664)
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(-0.999906, 0.00113331, 0.0136535, 0.00455864, 0.96731, 0.253558, -0.0129198, 0.253596, -0.967224, 0.0421485, 1.79724, -2.78664)
 doppler_tracking = 1
 script = ExtResource("8_x44r4")
+target = NodePath("../Car")
 
 [editable path="Car/Machine_Guns/Gun1"]
 [editable path="Car/Machine_Guns/Gun2"]
