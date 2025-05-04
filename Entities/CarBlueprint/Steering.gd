@@ -1,7 +1,7 @@
 extends Node
 class_name Steering
 
-@onready var PhysicsScript = preload("res://Entities/Utils/PhysicsFunctions.gd")  
+@onready var PhysicsScript = preload("res://Utils/PhysicsFunctions.gd")  
 @onready var PhysicsFunctionsInstance: PhysicsFunctions = PhysicsFunctions.new()
 
 var threeshold = 0.5
@@ -34,7 +34,7 @@ func _process(delta):
 	var target_front = front_grip_default
 	var target_rear = rear_grip_default
 	
-	if is_drifting and !is_ai:
+	if is_drifting:
 		front_grip = front_grip_drift
 		rear_grip = rear_grip_drift
 
@@ -93,9 +93,10 @@ func ApplySteeringForce(delta,suspensions,car):
 			
 			car.apply_force(force * wheel_x_axis * max_steering_force, wheel.global_position - car.global_position)
 			
-			DrawLine3d.DrawRay(
-				wheel.global_position,
-				(force * wheel_x_axis) / 100,
-				Color.RED
-			)
+			if Debug.isOn:
+				DrawLine3d.DrawRay(
+					wheel.global_position,
+					(force * wheel_x_axis) / 100,
+					Color.RED
+				)
 		

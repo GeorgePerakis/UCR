@@ -1,9 +1,12 @@
 extends Node3D
 @onready var Car := $Car as Node
-@onready var CarController = Car.get_script()
+@onready var Explosion: Node3D = $Car/Explosion
+@onready var Fire: GPUParticles3D = $Car/Fire
 
 var player
 var target
+
+var health = 100.0
 
 var turn_threshold = 0.1
 var drift_threshold = 0.8
@@ -18,6 +21,7 @@ func _ready():
 func _process(delta: float) -> void:
 	path_follow.progress += delta * speed
 	update_ai_behavior()
+	
 
 func update_ai_behavior():
 	chase_target(path_follow.global_position)
@@ -46,6 +50,23 @@ func chase_target(target):
 		Car.SteeringInstance.turn_left = false
 		Car.SteeringInstance.turn_right = false
 
+func die():
+	Car.set_center_of_mass(Vector3(0, 0, 0))
+	var upward_force = Vector3.UP * 27000 
+	Car.apply_impulse(Vector3.ZERO, upward_force)
+	
+	var random_torque = Vector3(
+		randf_range(-1.0, 1.0),
+		randf_range(-0.5, 0.5),
+		randf_range(-1.0, 1.0)
+	).normalized() * 24000  
+	Car.apply_torque_impulse(random_torque)
+	
+	Explosion.explode()
+	
+	await get_tree().create_timer(3).timeout
+	queue_free()
+	
 func init_enemy_scene():
 	await get_tree().process_frame
 	
@@ -55,4 +76,10 @@ func init_enemy_scene():
 	
 	path_follow = PathFollow3D.new()
 	path.add_child(path_follow)
-	#Car.SteeringInstance.is_ai = true
+
+func inflict_damage():
+	health -= 10
+	if health <= 40:
+		Fire.emitting = true
+	if health == 0:
+		die()

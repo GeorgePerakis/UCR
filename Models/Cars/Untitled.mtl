@@ -1,7 +1,7 @@
 # Blender 4.4.3 MTL File: 'None'
 # www.blender.org
 
-newmtl rim.001
+newmtl rim
 Ns 9.231070
 Ka 1.000000 1.000000 1.000000
 Kd 0.543634 0.510078 0.532310
@@ -11,7 +11,7 @@ Ni 1.500000
 d 1.000000
 illum 2
 
-newmtl tire.001
+newmtl tire
 Ns 9.231070
 Ka 1.000000 1.000000 1.000000
 Kd 0.019326 0.019326 0.019326

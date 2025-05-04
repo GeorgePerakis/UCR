@@ -1,0 +1,138 @@
+[gd_scene load_steps=9 format=3 uid="uid://dwny3nam0qvip"]
+
+[ext_resource type="PackedScene" uid="uid://nx8iqronan1q" path="res://Models/Test2.glb" id="1_il42d"]
+[ext_resource type="AudioStream" uid="uid://dj33cxe4oix3p" path="res://SFX/shot_sound_effect.mp3" id="2_acmbj"]
+
+[sub_resource type="Animation" id="Animation_6fax1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D:stream")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_acmbj")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_exyvl"]
+resource_name = "Shoot"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootNode:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0581348, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0, 0.13909), Vector3(0, 0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer3D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/1/use_blend = true
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D:stream")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 1,
+"values": []
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer3D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dkws3"]
+_data = {
+&"RESET": SubResource("Animation_6fax1"),
+&"Shoot": SubResource("Animation_exyvl")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_6fax1"]
+direction = Vector3(0, 100, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 37.84
+scale_min = 0.02
+scale_max = 0.02
+turbulence_noise_strength = 10.77
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dkws3"]
+albedo_color = Color(0.836428, 0.776952, 0, 1)
+metallic = 1.0
+roughness = 0.4
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3hcdg"]
+material = SubResource("StandardMaterial3D_dkws3")
+
+[node name="Machine_Gun" instance=ExtResource("1_il42d")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_dkws3")
+}
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="2"]
+stream = ExtResource("2_acmbj")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="." index="3"]
+transform = Transform3D(-0.06, 0, 4.72083e-09, 2.62268e-09, -1.98711e-16, 0.108, 0, -0.104, -2.06354e-16, 0.00204824, 0.0411046, 0.191787)
+emitting = false
+amount = 2
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_6fax1")
+draw_pass_1 = SubResource("CylinderMesh_3hcdg")
+
+[node name="RayCast3D" type="RayCast3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.0156706, -0.614021)
+target_position = Vector3(0, -0.205, 0)

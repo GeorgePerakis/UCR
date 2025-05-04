@@ -1,10 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://covf8tbwsajjr"]
+[gd_scene load_steps=10 format=3 uid="uid://covf8tbwsajjr"]
 
 [ext_resource type="Texture2D" uid="uid://dftxqejfv6sc2" path="res://Textures/Hazy_Afternoon_Backplate_001.png" id="1_8rbpu"]
-[ext_resource type="Script" uid="uid://c6w6sb74lp5qi" path="res://Entities/Level1/SpawnController.gd" id="1_fuudy"]
+[ext_resource type="Script" uid="uid://c6w6sb74lp5qi" path="res://Levels/Level1/SpawnController.gd" id="1_fuudy"]
 [ext_resource type="PackedScene" uid="uid://b8k6un11t7x6w" path="res://Entities/Player/Player.tscn" id="2_fuudy"]
 [ext_resource type="Texture2D" uid="uid://cl2oal5g35f8l" path="res://Textures/prototype_512x512_grey4.png" id="3_xylue"]
-[ext_resource type="Curve3D" uid="uid://bcnt2obcic6x8" path="res://Entities/Level1/new_curve_3d.tres" id="5_xylue"]
+[ext_resource type="Curve3D" uid="uid://bcnt2obcic6x8" path="res://Levels/Level1/new_curve_3d.tres" id="5_xylue"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_s2dqf"]
 panorama = ExtResource("1_8rbpu")
@@ -23,8 +23,6 @@ ambient_light_energy = 2.68
 albedo_texture = ExtResource("3_xylue")
 uv1_triplanar = true
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_xylue"]
-
 [node name="Level" type="Node3D"]
 script = ExtResource("1_fuudy")
 
@@ -38,6 +36,7 @@ transform = Transform3D(0.733635, 0.115244, -0.6697, 0, 0.985515, 0.16959, 0.679
 transform = Transform3D(0.999945, 0, -0.0104539, 0, 1, 0, 0.0104539, 0, 0.999945, 0.141468, 2.03842, -19.4543)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.6236, 0, -24.9246)
 use_collision = true
 
 [node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -48,34 +47,7 @@ material = SubResource("StandardMaterial3D_3odj7")
 [node name="Path3D" type="Path3D" parent="."]
 curve = ExtResource("5_xylue")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.4822, 0, 7.28914)
-mesh = SubResource("CapsuleMesh_xylue")
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.828951, 0, 20.4131)
-mesh = SubResource("CapsuleMesh_xylue")
-
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.7856, 0, 32.9511)
-mesh = SubResource("CapsuleMesh_xylue")
-
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 72.8526, 0, 10.3656)
-mesh = SubResource("CapsuleMesh_xylue")
-
-[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.4283, 0, 6.60534)
-mesh = SubResource("CapsuleMesh_xylue")
-
-[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.76516, 0, -16.1362)
-mesh = SubResource("CapsuleMesh_xylue")
-
-[node name="MeshInstance3D8" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.40419, 0, -7.04613)
-mesh = SubResource("CapsuleMesh_xylue")
-
-[node name="MeshInstance3D7" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.7437, 0, -13.111)
-mesh = SubResource("CapsuleMesh_xylue")
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

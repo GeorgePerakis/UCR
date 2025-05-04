@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://djnr2yj443u8o"
-path="res://.godot/imported/Nissan GTR.glb-e5d93144998e52c1f2524d4d8ce68fd3.scn"
+path="res://.godot/imported/Nissan GTR.glb-1db59f5d03ba4c6552f7e67d4487b443.scn"
 
 [deps]
 
-source_file="res://Models/Nissan GTR.glb"
-dest_files=["res://.godot/imported/Nissan GTR.glb-e5d93144998e52c1f2524d4d8ce68fd3.scn"]
+source_file="res://Models/Cars/Nissan GTR.glb"
+dest_files=["res://.godot/imported/Nissan GTR.glb-1db59f5d03ba4c6552f7e67d4487b443.scn"]
 
 [params]
 

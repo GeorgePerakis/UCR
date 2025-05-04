@@ -9,7 +9,7 @@ var max_speed = 25
 var force_multiplier
 var drag_coefficient = 1300
 
-var local_offset = Vector3(0, -0.8, 0)
+var local_offset = Vector3(0, -0.8, 0.2)
 
 func HandleAcceleration(delta,suspensions,car,curve):
 	var one_wheel_grounded = false
@@ -27,7 +27,6 @@ func HandleAcceleration(delta,suspensions,car,curve):
 		var car_z_axis = car.global_transform.basis.z.normalized()
 		
 		var suspension = suspensions[key]
-		var wheel = suspension["wheel"]
 		
 		if raycast.is_colliding():
 			var normalized_speed = clamp(speed / max_speed, 0.0, 1.0)
@@ -46,12 +45,12 @@ func HandleAcceleration(delta,suspensions,car,curve):
 				car.apply_force((force * 2 * -car_z_axis),world_offset - car.global_position)
 			
 			if !is_accelerating and !is_braking:
-				print("test")
 				var drag_force = -car.linear_velocity.normalized() * drag_coefficient
 				car.apply_central_force(drag_force)
 			
-			DrawLine3d.DrawRay(
-					world_offset,
-					car.linear_velocity.dot(car.global_transform.basis.z) * car.global_transform.basis.z.normalized(),
-					Color.BLUE
-				)
+			if Debug.isOn:
+				DrawLine3d.DrawRay(
+						world_offset,
+						car.linear_velocity.dot(car.global_transform.basis.z) * car.global_transform.basis.z.normalized(),
+						Color.BLUE
+					)

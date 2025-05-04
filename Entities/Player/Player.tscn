@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://b8k6un11t7x6w"]
+[gd_scene load_steps=10 format=3 uid="uid://b8k6un11t7x6w"]
 
 [ext_resource type="Script" uid="uid://b70o2kl3f2xmc" path="res://Entities/Player/PlayerController.gd" id="1_8tfcp"]
 [ext_resource type="Script" uid="uid://o7a25km0r64u" path="res://Entities/CarBlueprint/CarController.gd" id="1_ebsmb"]
-[ext_resource type="ArrayMesh" uid="uid://xhbuwh0affbs" path="res://Models/Player_Mesh.res" id="3_1des2"]
-[ext_resource type="ArrayMesh" uid="uid://b5268kf67e4bd" path="res://Models/Right_Wheel.obj" id="3_vweq0"]
+[ext_resource type="ArrayMesh" uid="uid://xhbuwh0affbs" path="res://Models/Cars/Player_Mesh.res" id="3_1des2"]
+[ext_resource type="ArrayMesh" uid="uid://b5268kf67e4bd" path="res://Models/Cars/Right_Wheel.obj" id="3_vweq0"]
+[ext_resource type="ArrayMesh" uid="uid://bjr0c6i77qdjm" path="res://Models/Cars/Left_Wheel.obj" id="5_an6q6"]
+[ext_resource type="Script" uid="uid://edxkidqm8xut" path="res://Entities/Player/Shooting.gd" id="6_hj1c0"]
+[ext_resource type="PackedScene" uid="uid://dwny3nam0qvip" path="res://Entities/Player/Machine_Gun.tscn" id="6_t38ms"]
 
 [sub_resource type="Curve" id="Curve_5orbf"]
 _data = [Vector2(0.0478723, 0.629214), 0.0, 0.0, 0, 0, Vector2(0.265957, 1), 0.0, 0.0, 0, 0, Vector2(0.569149, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 0.146068), 0.0, 0.0, 0, 0]
@@ -16,17 +19,18 @@ points = PackedVector3Array(1.20388, -0.438554, -1.13051, 1.1928, 0.0953528, 2.1
 script = ExtResource("1_8tfcp")
 
 [node name="Car" type="RigidBody3D" parent="." groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 mass = 1100.0
 script = ExtResource("1_ebsmb")
 curve = SubResource("Curve_5orbf")
 
 [node name="Chasis" type="MeshInstance3D" parent="Car"]
-transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.125, -0.0751095)
+transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.0329107, -0.0751095)
 mesh = ExtResource("3_1des2")
 skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
-transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.125, -0.0751095)
+transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.0329107, -0.0751095)
 visible = false
 shape = SubResource("ConvexPolygonShape3D_1des2")
 
@@ -41,12 +45,11 @@ mesh = ExtResource("3_vweq0")
 skeleton = NodePath("")
 
 [node name="FL" type="RayCast3D" parent="Car/Wheels"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.612, 0.049, 1.048)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.612, 0.049, 1.048)
 
 [node name="Wheel" type="MeshInstance3D" parent="Car/Wheels/FL"]
 transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, -0.25, 0)
-mesh = ExtResource("3_vweq0")
-skeleton = NodePath("")
+mesh = ExtResource("5_an6q6")
 
 [node name="BR" type="RayCast3D" parent="Car/Wheels"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.611838, 0.0486612, -1.048)
@@ -57,13 +60,26 @@ mesh = ExtResource("3_vweq0")
 skeleton = NodePath("")
 
 [node name="BL" type="RayCast3D" parent="Car/Wheels"]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0.612, 0.049, -1.048)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.612, 0.049, -1.048)
 
 [node name="Wheel" type="MeshInstance3D" parent="Car/Wheels/BL"]
 transform = Transform3D(0.54, 0, 0, 0, 0.54, 0, 0, 0, 0.54, 0, -0.25, 0)
-mesh = ExtResource("3_vweq0")
+mesh = ExtResource("5_an6q6")
 skeleton = NodePath("")
 
+[node name="Machine_Guns" type="Node3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.182534, 0)
+script = ExtResource("6_hj1c0")
+
+[node name="Gun1" parent="Car/Machine_Guns" instance=ExtResource("6_t38ms")]
+transform = Transform3D(-1.05318, -1.10982, 1.33757e-07, -1.10982, 1.05318, 0, -9.20721e-08, -9.70238e-08, -1.53, -0.55, 0.606, 0)
+
+[node name="Gun2" parent="Car/Machine_Guns" instance=ExtResource("6_t38ms")]
+transform = Transform3D(-1.0533, 1.10971, -2.31024e-07, 1.10971, 1.0533, 0, 1.59044e-07, -1.67562e-07, -1.53, 0.549712, 0.606398, -2.26059e-08)
+
 [node name="Camera3D" type="Camera3D" parent="Car"]
-transform = Transform3D(-0.999906, -1.95578e-08, 0.0137005, 0.00455864, 0.94302, 0.332706, -0.0129198, 0.332737, -0.942931, 0.0445565, 1.08202, -3.06658)
+transform = Transform3D(-0.999906, 0.00113331, 0.0136535, 0.00455864, 0.967309, 0.253558, -0.0129198, 0.253596, -0.967224, 0.0421485, 1.34724, -2.78664)
 doppler_tracking = 1
+
+[editable path="Car/Machine_Guns/Gun1"]
+[editable path="Car/Machine_Guns/Gun2"]
