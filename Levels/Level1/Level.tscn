@@ -23,8 +23,9 @@ ambient_light_energy = 2.68
 albedo_texture = ExtResource("3_xylue")
 uv1_triplanar = true
 
-[node name="Level" type="Node3D"]
+[node name="Level" type="Node3D" node_paths=PackedStringArray("camera_node")]
 script = ExtResource("1_fuudy")
+camera_node = NodePath("Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jgwn8")

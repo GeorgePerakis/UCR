@@ -7,6 +7,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	Accept_Input()
+	
 func Accept_Input():
 	Car.SteeringInstance.is_drifting = Input.is_action_pressed("drift")
 	

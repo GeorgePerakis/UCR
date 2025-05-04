@@ -1,19 +1,20 @@
 extends Node3D
 
-@export var enemy_scene: PackedScene = preload("res://Entities/Enemy/Enemy.tscn")
-@onready var shared_path: Path3D = $Path3D
+@export var enemy_scene = preload("res://Entities/Enemy/Enemy.tscn")
+@export var camera_node: Node
+@onready var shared_path = $Path3D
 var place = 5
 
-func _ready() -> void:
+func _ready():
 	$Timer.start()
 	spawn_enemy()
 	spawn_enemy()
 	spawn_enemy()
 	spawn_enemy()
 	spawn_enemy()
-func spawn_enemy() -> void:
+
+func spawn_enemy():
 	var enemy = enemy_scene.instantiate()
-	
 	enemy.path = shared_path
 	
 	add_child(enemy)
@@ -21,5 +22,5 @@ func spawn_enemy() -> void:
 	place += 5
 
 
-func _on_timer_timeout() -> void:
+func _on_timer_timeout():
 	spawn_enemy()

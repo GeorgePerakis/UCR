@@ -21,6 +21,7 @@ boot_splash/use_filter=false
 
 DrawLine3d="*res://Utils/DrawLine3D.gd"
 Debug="*res://Utils/Debug.gd"
+SignalBus="*res://Utils/SignalBus.gd"
 
 [filesystem]
 
