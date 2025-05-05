@@ -51,7 +51,7 @@ func chase_target(target):
 		Car.SteeringInstance.turn_right = false
 
 func die():
-	SignalBus.emit_signal("enemy_died")
+	GameManager.emit_signal("enemy_died")
 	
 	Car.set_center_of_mass(Vector3(0, 0, 0))
 	var upward_force = Vector3.UP * 27000 

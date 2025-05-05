@@ -19,7 +19,7 @@ var shake_offset := Vector3.ZERO
 var is_shaking := false
 
 func _ready():
-	SignalBus.connect("enemy_died", Callable(self, "_on_enemy_died"))
+	GameManager.connect("enemy_died", Callable(self, "_on_enemy_died"))
 
 func _physics_process(delta: float) -> void:
 	if target:
