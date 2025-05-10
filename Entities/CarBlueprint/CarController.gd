@@ -25,7 +25,7 @@ func _physics_process(delta):
 	SuspensionInstance.ApplySuspensionForce(delta,suspensions,car)
 	SteeringInstance.HandleSteering(suspensions)
 	SteeringInstance.ApplySteeringForce(delta,suspensions,car)
-	AccelerationInstance.HandleAcceleration(delta,suspensions,car,curve)
+	AccelerationInstance.HandleAcceleration(suspensions,car,curve)
 	
 	angular_velocity = car.angular_velocity
 

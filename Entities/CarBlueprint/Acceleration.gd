@@ -4,14 +4,14 @@ class_name Acceleration
 var is_accelerating = false
 var is_braking = false
 
-var engine_force = 9500 / 2
+var engine_force = 4500
 var max_speed = 25
 var force_multiplier
 var drag_coefficient = 1300
 
 var local_offset = Vector3(0, -0.8, 0.2)
 
-func HandleAcceleration(delta,suspensions,car,curve):
+func HandleAcceleration(suspensions,car,curve):
 	var one_wheel_grounded = false
 	
 	for key in suspensions:

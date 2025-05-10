@@ -34,7 +34,7 @@ environment = SubResource("Environment_jgwn8")
 transform = Transform3D(0.733635, 0.115244, -0.6697, 0, 0.985515, 0.16959, 0.679544, -0.124417, 0.723008, 0, 3.93824, 4.06678)
 
 [node name="Player" parent="." instance=ExtResource("2_fuudy")]
-transform = Transform3D(0.999945, 0, -0.0104539, 0, 1, 0, 0.0104539, 0, 0.999945, 0.141468, 2.03842, -19.4543)
+transform = Transform3D(0.510452, 0, 0.859906, 0, 1, 0, -0.859906, 0, 0.510452, -0.916156, 2.03842, 81.7104)
 
 [node name="CSGCombiner3D" type="CSGCombiner3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90.6236, 0, -24.9246)
@@ -49,6 +49,6 @@ material = SubResource("StandardMaterial3D_3odj7")
 curve = ExtResource("5_xylue")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 2.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

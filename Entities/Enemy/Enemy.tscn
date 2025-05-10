@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://df44jnt2620u2"]
+[gd_scene load_steps=19 format=3 uid="uid://df44jnt2620u2"]
 
 [ext_resource type="Script" uid="uid://sxmkvrg71n2u" path="res://Entities/Enemy/EnemyController.gd" id="1_vvlvg"]
 [ext_resource type="Script" uid="uid://o7a25km0r64u" path="res://Entities/CarBlueprint/CarController.gd" id="2_6owhb"]
@@ -57,6 +57,14 @@ vertex_color_use_as_albedo = true
 material = SubResource("StandardMaterial3D_p70tj")
 radial_segments = 8
 rings = 4
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bgbm4"]
+albedo_color = Color(0, 0.730482, 0.15666, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3l5gm"]
+material = SubResource("StandardMaterial3D_bgbm4")
+top_radius = 0.645
+bottom_radius = 0.0
 
 [node name="Enemy" type="Node3D"]
 script = ExtResource("1_vvlvg")
@@ -118,3 +126,6 @@ amount = 12
 fixed_fps = 60
 process_material = SubResource("ParticleProcessMaterial_y11p7")
 draw_pass_1 = SubResource("SphereMesh_bycej")
+
+[node name="ProgressMarker" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_3l5gm")

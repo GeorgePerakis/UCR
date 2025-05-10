@@ -1,6 +1,5 @@
 extends Node3D
 @onready var Car := $Car as Node
-@onready var CarController = Car.get_script() 
 
 func _ready():
 	await get_tree().process_frame
