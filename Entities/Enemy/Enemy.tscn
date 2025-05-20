@@ -70,7 +70,11 @@ bottom_radius = 0.0
 script = ExtResource("1_vvlvg")
 
 [node name="Car" type="RigidBody3D" parent="." groups=["Enemy"]]
+collision_layer = 2
+collision_mask = 3
 mass = 1100.0
+contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("2_6owhb")
 curve = SubResource("Curve_xeo28")
 
@@ -128,4 +132,7 @@ process_material = SubResource("ParticleProcessMaterial_y11p7")
 draw_pass_1 = SubResource("SphereMesh_bycej")
 
 [node name="ProgressMarker" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CylinderMesh_3l5gm")
+
+[connection signal="body_entered" from="Car" to="." method="_on_car_body_entered"]

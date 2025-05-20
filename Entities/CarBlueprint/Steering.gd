@@ -44,16 +44,14 @@ func _process(delta):
 func HandleSteering(suspensions):
 	if turn_left and (target_angle == LEFT_ROTATION or target_angle == CENTER_ROTATION):
 		target_angle = LEFT_ROTATION
-		RotateWheels(suspensions)
 	elif turn_right and (target_angle == RIGHT_ROTATION or target_angle == CENTER_ROTATION):
 		target_angle = RIGHT_ROTATION
-		RotateWheels(suspensions)
 	elif !turn_left and (target_angle == LEFT_ROTATION):
 		target_angle = CENTER_ROTATION
-		RotateWheels(suspensions)
 	elif !turn_right and (target_angle == RIGHT_ROTATION):
 		target_angle = CENTER_ROTATION
-		RotateWheels(suspensions)
+		
+	RotateWheels(suspensions)
 
 func RotateWheels(suspensions):
 	var has_input = absf(Input.get_axis("left", "right"))

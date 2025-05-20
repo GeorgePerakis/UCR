@@ -3,12 +3,11 @@ extends Node3D
 @onready var Explosion: Node3D = $Car/Explosion
 @onready var Fire: GPUParticles3D = $Car /Fire
 @onready var progress_marker = $ProgressMarker
-
 @onready var mesh_parts := [$Car/Chasis, $Car/Wheels/FR/Wheel, $Car/Wheels/FL/Wheel, $Car/Wheels/BR/Wheel, $Car/Wheels/BL/Wheel]
 
 var player
 var target
-
+var is_dead = false
 var health = 100.0
 
 var turn_threshold = 0.13
@@ -28,7 +27,6 @@ func _process(delta: float) -> void:
 	progress_marker.global_position = progress_position
 	
 	update_ai_behavior()
-	
 
 func update_ai_behavior():
 	chase_target(path_follow.global_position)
@@ -60,6 +58,8 @@ func chase_target(target):
 func die():
 	GameManager.emit_signal("enemy_died")
 	GameManager.current_enemy_ammount -= 1
+	
+	is_dead = true
 	
 	Car.set_center_of_mass(Vector3(0, 0, 0))
 	var upward_force = Vector3.UP * 27000 
@@ -106,7 +106,6 @@ func inflict_damage():
 	if health == 0:
 		die()
 
-
 func fade_mesh(mesh, duration):
 	var tween = create_tween()
 	for i in mesh.mesh.get_surface_count():
@@ -133,3 +132,7 @@ func fade_mesh(mesh, duration):
 				material.flags_transparent = false
 			)
 			
+
+#func _on_car_body_entered(body: Node) -> void:
+	#if body.is_in_group("Enemy") and body != self and is_dead:
+		#body.get_parent().die()

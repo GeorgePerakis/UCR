@@ -16,9 +16,9 @@ func _ready():
 		player = players[0]
 
 func _process(delta: float) -> void:
-	if GameManager.current_enemy_ammount < 4 and timer.is_stopped():
+	if GameManager.current_enemy_ammount < 3 and timer.is_stopped():
 		timer.start()
-	elif GameManager.current_enemy_ammount >= 4 and !timer.is_stopped():
+	elif GameManager.current_enemy_ammount >= 3 and !timer.is_stopped():
 		timer.stop()
 	
 func spawn_enemy():
@@ -54,5 +54,4 @@ func flatten_path_y(y_value: float):
 		curve.set_point_position(i, point)
 
 func _on_timer_timeout():
-	print("spawned")
 	spawn_enemy()
