@@ -35,3 +35,16 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
 alignment = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 388.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 135
+text = "UCR"
+fit_content = true
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1

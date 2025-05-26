@@ -6,6 +6,7 @@ func _ready():
 
 func _process(delta: float) -> void:
 	Accept_Input()
+	GameManager.player_speed = Car.linear_velocity.z
 	
 func Accept_Input():
 	Car.SteeringInstance.is_drifting = Input.is_action_pressed("drift")
