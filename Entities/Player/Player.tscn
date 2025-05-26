@@ -6,7 +6,7 @@
 [ext_resource type="ArrayMesh" uid="uid://b5268kf67e4bd" path="res://Models/Cars/Right_Wheel.obj" id="3_vweq0"]
 [ext_resource type="ArrayMesh" uid="uid://bjr0c6i77qdjm" path="res://Models/Cars/Left_Wheel.obj" id="5_an6q6"]
 [ext_resource type="Script" uid="uid://edxkidqm8xut" path="res://Entities/Player/Shooting.gd" id="6_hj1c0"]
-[ext_resource type="PackedScene" uid="uid://dwny3nam0qvip" path="res://Entities/Player/Machine_Gun.tscn" id="6_t38ms"]
+[ext_resource type="PackedScene" uid="uid://dwny3nam0qvip" path="res://Entities/Player/MachineGun.tscn" id="6_t38ms"]
 [ext_resource type="Script" uid="uid://dec7207yxx2to" path="res://Entities/Player/Camera.gd" id="8_x44r4"]
 
 [sub_resource type="Curve" id="Curve_5orbf"]

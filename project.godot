@@ -32,6 +32,11 @@ window/size/viewport_height=1080
 
 import/blender/enabled=false
 
+[gui]
+
+theme/custom="uid://bvafxy0hmty5"
+theme/custom_font="uid://dat8k0vh4n4jl"
+
 [input]
 
 space={
