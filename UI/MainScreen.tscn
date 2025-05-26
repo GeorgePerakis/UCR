@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://dha06qmnllfjy"]
+[gd_scene load_steps=4 format=3 uid="uid://dha06qmnllfjy"]
+
+[ext_resource type="Script" uid="uid://cm0dtmr7n5sx2" path="res://UI/MainScreen.gd" id="1_603b8"]
+[ext_resource type="VideoStream" uid="uid://dpcw0xwg8ulrv" path="res://VFX/CarWithRain.ogv" id="1_t4o0w"]
+[ext_resource type="AudioStream" uid="uid://c8ltxmkxcqwc7" path="res://SFX/rain_sound.mp3" id="2_sbehx"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,8 +11,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_603b8")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_t4o0w")
+volume_db = -80.0
+autoplay = true
+loop = true
+
+[node name="Main Buttons" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.161
@@ -18,22 +41,54 @@ offset_right = 133.88
 grow_vertical = 2
 alignment = 1
 
-[node name="Play Button" type="Button" parent="VBoxContainer"]
+[node name="Play Button" type="Button" parent="Main Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Play"
 alignment = 0
 
-[node name="Options Button" type="Button" parent="VBoxContainer"]
+[node name="Options Button" type="Button" parent="Main Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Options"
 alignment = 0
 
-[node name="Quit Button" type="Button" parent="VBoxContainer"]
+[node name="Quit Button" type="Button" parent="Main Buttons"]
 layout_mode = 2
 size_flags_vertical = 3
 text = "Quit"
+alignment = 0
+
+[node name="Options" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.161
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = 670.0
+offset_right = 201.88
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Options"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Volume"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Volume" type="HSlider" parent="Options"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 23.0
+value = 12.0
+
+[node name="Back" type="Button" parent="Options"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back"
 alignment = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
@@ -48,3 +103,9 @@ fit_content = true
 shortcut_keys_enabled = false
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_sbehx")
+volume_db = -4.188
+autoplay = true
+parameters/looping = true

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://bvafxy0hmty5"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bvafxy0hmty5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h32ur"]
 content_margin_left = 4.0
@@ -23,6 +23,39 @@ content_margin_left = 80.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7m7pu"]
 content_margin_left = 80.0
+
+[sub_resource type="Gradient" id="Gradient_v3l25"]
+offsets = PackedFloat32Array(0.909774, 1)
+colors = PackedColorArray(0.689285, 0.689285, 0.689285, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_e40ej"]
+gradient = SubResource("Gradient_v3l25")
+width = 19
+height = 19
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xwjpn"]
+gradient = SubResource("Gradient_v3l25")
+width = 19
+height = 19
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vm4cl"]
+bg_color = Color(0.569434, 0, 0.144177, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_top = 17.0
+expand_margin_bottom = 17.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cyjfu"]
+content_margin_left = 20.0
+bg_color = Color(0.440523, 0, 0.103057, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+expand_margin_top = 17.0
+expand_margin_bottom = 17.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ou33m"]
 bg_color = Color(0.6, 0.6, 0.6, 0.145098)
@@ -84,6 +117,10 @@ Button/styles/focus = SubResource("StyleBoxEmpty_ou33m")
 Button/styles/hover = SubResource("StyleBoxEmpty_2nl5o")
 Button/styles/normal = SubResource("StyleBoxEmpty_qm5hq")
 Button/styles/pressed = SubResource("StyleBoxEmpty_7m7pu")
+HSlider/icons/grabber = SubResource("GradientTexture2D_e40ej")
+HSlider/icons/grabber_highlight = SubResource("GradientTexture2D_xwjpn")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_vm4cl")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_cyjfu")
 ProgressBar/constants/outline_size = 10
 ProgressBar/styles/background = SubResource("StyleBoxFlat_ou33m")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_2nl5o")
