@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://dwny3nam0qvip"]
 
-[ext_resource type="PackedScene" uid="uid://nx8iqronan1q" path="res://Models/Test2.glb" id="1_il42d"]
+[ext_resource type="PackedScene" uid="uid://dxksxdp4r4c45" path="res://Models/Guns/Test2.glb" id="1_il42d"]
 [ext_resource type="AudioStream" uid="uid://dj33cxe4oix3p" path="res://SFX/shot_sound_effect.mp3" id="2_acmbj"]
 
 [sub_resource type="Animation" id="Animation_6fax1"]

@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://dha06qmnllfjy"]
 
-[ext_resource type="Script" uid="uid://cm0dtmr7n5sx2" path="res://UI/MainScreen.gd" id="1_603b8"]
+[ext_resource type="Script" uid="uid://cm0dtmr7n5sx2" path="res://UI/Scripts/MainMenu.gd" id="1_603b8"]
 [ext_resource type="VideoStream" uid="uid://dpcw0xwg8ulrv" path="res://VFX/CarWithRain.ogv" id="1_t4o0w"]
 [ext_resource type="AudioStream" uid="uid://c8ltxmkxcqwc7" path="res://SFX/rain_sound.mp3" id="2_sbehx"]
 
-[node name="Control" type="Control"]
+[node name="MainScreen" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -82,8 +82,8 @@ horizontal_alignment = 1
 [node name="Volume" type="HSlider" parent="Options"]
 layout_mode = 2
 size_flags_vertical = 3
-max_value = 23.0
-value = 12.0
+max_value = 15.0
+value = 4.0
 
 [node name="Back" type="Button" parent="Options"]
 layout_mode = 2

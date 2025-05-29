@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b8k6un11t7x6w"]
+[gd_scene load_steps=14 format=3 uid="uid://b8k6un11t7x6w"]
 
 [ext_resource type="Script" uid="uid://b70o2kl3f2xmc" path="res://Entities/Player/PlayerController.gd" id="1_8tfcp"]
 [ext_resource type="Script" uid="uid://o7a25km0r64u" path="res://Entities/CarBlueprint/CarController.gd" id="1_ebsmb"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://edxkidqm8xut" path="res://Entities/Player/Shooting.gd" id="6_hj1c0"]
 [ext_resource type="PackedScene" uid="uid://dwny3nam0qvip" path="res://Entities/Player/MachineGun.tscn" id="6_t38ms"]
 [ext_resource type="Script" uid="uid://dec7207yxx2to" path="res://Entities/Player/Camera.gd" id="8_x44r4"]
+[ext_resource type="PackedScene" uid="uid://bd1a71ec8s5xy" path="res://UI/Scenes/PauseScreen.tscn" id="9_761t5"]
+[ext_resource type="PackedScene" uid="uid://dqixyo5txfv04" path="res://UI/Scenes/MainUI.tscn" id="9_hacra"]
+[ext_resource type="PackedScene" uid="uid://ceri36qhid8r" path="res://UI/Scenes/LevelFinishedScreen.tscn" id="11_jynvv"]
 
 [sub_resource type="Curve" id="Curve_5orbf"]
 _data = [Vector2(0.0478723, 0.629214), 0.0, 0.0, 0, 0, Vector2(0.265957, 1), 0.0, 0.0, 0, 0, Vector2(0.569149, 0.606742), 0.0, 0.0, 0, 0, Vector2(1, 0.146068), 0.0, 0.0, 0, 0]
@@ -83,6 +86,25 @@ transform = Transform3D(-0.999906, 0.00113331, 0.0136535, 0.00455864, 0.96731, 0
 doppler_tracking = 1
 script = ExtResource("8_x44r4")
 target = NodePath("../Car")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InGameScreen" parent="UI" instance=ExtResource("9_hacra")]
+layout_mode = 1
+
+[node name="PauseScreen" parent="UI" instance=ExtResource("9_761t5")]
+visible = false
+layout_mode = 1
+
+[node name="LevelFinishedScreen" parent="UI" instance=ExtResource("11_jynvv")]
+visible = false
+layout_mode = 1
 
 [editable path="Car/Machine_Guns/Gun1"]
 [editable path="Car/Machine_Guns/Gun2"]

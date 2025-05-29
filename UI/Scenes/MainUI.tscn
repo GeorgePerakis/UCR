@@ -1,0 +1,70 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqixyo5txfv04"]
+
+[ext_resource type="Script" uid="uid://cqinqameh648g" path="res://UI/Scripts/UI.gd" id="1_xv1u1"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_xv1u1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = 336.0
+offset_bottom = 153.0
+grow_horizontal = 2
+scale = Vector2(0.815, 0.815)
+theme_override_constants/separation = 10
+
+[node name="Drones Killed" type="RichTextLabel" parent="HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 0
+text = "DRONES KILLED:"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = -35
+
+[node name="Number of Drones Killed" type="RichTextLabel" parent="HBoxContainer/MarginContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 110
+text = "0"
+fit_content = true
+autowrap_mode = 0
+shortcut_keys_enabled = false
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="HBoxContainer"]
+clip_contents = false
+layout_mode = 2
+text = "Time Left "
+fit_content = true
+autowrap_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer"]
+clip_contents = false
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "00:00"
+fit_content = true
+scroll_active = false
+autowrap_mode = 2

@@ -1,0 +1,109 @@
+[gd_scene load_steps=4 format=3 uid="uid://bd1a71ec8s5xy"]
+
+[ext_resource type="Script" uid="uid://day5c37rb15uy" path="res://UI/Scripts/PauseScreen.gd" id="1_5ssfw"]
+
+[sub_resource type="Gradient" id="Gradient_eaots"]
+offsets = PackedFloat32Array(0.0232558, 0.507752, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.223214, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5ssfw"]
+gradient = SubResource("Gradient_eaots")
+
+[node name="PauseScreen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5ssfw")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 960.0
+offset_top = -540.0
+offset_right = 2040.0
+offset_bottom = 1380.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = SubResource("GradientTexture1D_5ssfw")
+
+[node name="Main Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.161
+anchor_bottom = 1.0
+offset_top = 670.0
+offset_right = 133.88
+grow_vertical = 2
+alignment = 1
+
+[node name="Resume Button" type="Button" parent="Main Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resume"
+alignment = 0
+
+[node name="Options Button" type="Button" parent="Main Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Options"
+alignment = 0
+
+[node name="Quit Button" type="Button" parent="Main Buttons"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Quit"
+alignment = 0
+
+[node name="Options" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.161
+anchor_bottom = 1.0
+offset_left = 62.0
+offset_top = 670.0
+offset_right = 201.88
+grow_vertical = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Options"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Main Volume"
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Volume" type="HSlider" parent="Options"]
+layout_mode = 2
+size_flags_vertical = 3
+max_value = 15.0
+value = 4.0
+
+[node name="Back" type="Button" parent="Options"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Back"
+alignment = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 388.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 135
+text = "UCR"
+fit_content = true
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1

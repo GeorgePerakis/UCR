@@ -22,7 +22,6 @@ func _ready():
 
 func _process(delta: float) -> void:
 	path_follow.progress += delta * speed
-	
 	var progress_position = path.curve.sample_baked(path_follow.progress)
 	progress_marker.global_position = progress_position
 	
@@ -56,10 +55,12 @@ func chase_target(target):
 		Car.SteeringInstance.turn_right = false
 	
 func die():
+	is_dead = true
+	
+	GameManager.enemy_deaths += 1
 	GameManager.emit_signal("enemy_died")
 	GameManager.current_enemy_ammount -= 1
 	
-	is_dead = true
 	
 	Car.set_center_of_mass(Vector3(0, 0, 0))
 	var upward_force = Vector3.UP * 27000 
@@ -103,7 +104,7 @@ func inflict_damage():
 	health -= 10
 	if health <= 40:
 		Fire.emitting = true
-	if health == 0:
+	if health == 0 && !is_dead:
 		die()
 
 func fade_mesh(mesh, duration):

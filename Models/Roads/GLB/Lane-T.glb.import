@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://nx8iqronan1q"
-path="res://.godot/imported/Test2.glb-a4931e421426a9e0c65a0d3eb3398955.scn"
+uid="uid://cd8oed22ie0hf"
+path="res://.godot/imported/Lane-T.glb-0a5d5825fae4848ad170df9eb6ae8865.scn"
 
 [deps]
 
-source_file="res://Models/Test2.glb"
-dest_files=["res://.godot/imported/Test2.glb-a4931e421426a9e0c65a0d3eb3398955.scn"]
+source_file="res://Models/Roads/GLB/Lane-T.glb"
+dest_files=["res://.godot/imported/Lane-T.glb-0a5d5825fae4848ad170df9eb6ae8865.scn"]
 
 [params]
 
