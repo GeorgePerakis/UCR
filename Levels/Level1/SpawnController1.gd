@@ -4,17 +4,12 @@ extends Node3D
 @export var camera_node: Node
 @onready var path = $Path3D
 @onready var timer: Timer = $Timer
-
 var player
 
 func _ready():
 	flatten_path_y(1.5)
 	timer.start()
-	
-	var players = get_tree().get_nodes_in_group("Player")
-	if players.size() > 0:
-		player = players[0]
-
+		
 func _process(delta: float) -> void:
 	if GameManager.current_enemy_ammount < 3 and timer.is_stopped():
 		timer.start()
@@ -27,6 +22,7 @@ func spawn_enemy():
 		return
 	
 	var player = players[0]
+	
 	var enemy = enemy_scene.instantiate()
 	enemy.path = path
 	

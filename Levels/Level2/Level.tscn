@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://utnwk5j86je7"]
+[gd_scene load_steps=10 format=3 uid="uid://utnwk5j86je7"]
 
-[ext_resource type="Script" uid="uid://c6w6sb74lp5qi" path="res://Levels/Level1/SpawnController.gd" id="1_452uq"]
+[ext_resource type="Script" uid="uid://c6w6sb74lp5qi" path="res://Levels/Level1/SpawnController1.gd" id="1_452uq"]
 [ext_resource type="Texture2D" uid="uid://dftxqejfv6sc2" path="res://Textures/Hazy_Afternoon_Backplate_001.png" id="2_wcwj4"]
 [ext_resource type="PackedScene" uid="uid://b8k6un11t7x6w" path="res://Entities/Player/Player.tscn" id="3_uxffb"]
 [ext_resource type="Texture2D" uid="uid://cl2oal5g35f8l" path="res://Textures/prototype_512x512_grey4.png" id="4_yyroo"]
 [ext_resource type="Curve3D" uid="uid://bcnt2obcic6x8" path="res://Levels/Level1/new_curve_3d.tres" id="5_iqfak"]
-[ext_resource type="PackedScene" uid="uid://df2goqnbplqhq" path="res://Models/Roads/Scenes/driveway.tscn" id="6_wcwj4"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_s2dqf"]
 panorama = ExtResource("2_wcwj4")
@@ -52,8 +51,5 @@ curve = ExtResource("5_iqfak")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
-
-[node name="Driveway" parent="." instance=ExtResource("6_wcwj4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 1, -22)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -4,7 +4,7 @@ extends Control
 @onready var label: RichTextLabel = $HBoxContainer/RichTextLabel
 @onready var level_finished_screen: Control = $"../LevelFinishedScreen"
 
-var time_left: float = 10
+var time_left: float = 60
 var countdown_active: bool = true
 
 

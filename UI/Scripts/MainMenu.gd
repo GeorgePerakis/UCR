@@ -17,7 +17,7 @@ func _ready():
 	back_button.pressed.connect(_on_back_pressed)
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://Levels/Level1/Level.tscn")
+	get_tree().change_scene_to_file("res://Levels/Level1/Level1.tscn")
 	
 func _on_options_pressed():
 	main_buttons.visible = false
