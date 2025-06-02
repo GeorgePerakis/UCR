@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8k6un11t7x6w"]
+[gd_scene load_steps=15 format=3 uid="uid://b8k6un11t7x6w"]
 
 [ext_resource type="Script" uid="uid://b70o2kl3f2xmc" path="res://Entities/Player/PlayerController.gd" id="1_8tfcp"]
 [ext_resource type="Script" uid="uid://o7a25km0r64u" path="res://Entities/CarBlueprint/CarController.gd" id="1_ebsmb"]
 [ext_resource type="ArrayMesh" uid="uid://xhbuwh0affbs" path="res://Models/Cars/Player_Mesh.res" id="3_1des2"]
 [ext_resource type="ArrayMesh" uid="uid://b5268kf67e4bd" path="res://Models/Cars/Right_Wheel.obj" id="3_vweq0"]
+[ext_resource type="Material" uid="uid://ci0tks8o8ixfe" path="res://Textures/Light.tres" id="4_lmeus"]
 [ext_resource type="ArrayMesh" uid="uid://bjr0c6i77qdjm" path="res://Models/Cars/Left_Wheel.obj" id="5_an6q6"]
 [ext_resource type="Script" uid="uid://edxkidqm8xut" path="res://Entities/Player/Shooting.gd" id="6_hj1c0"]
 [ext_resource type="PackedScene" uid="uid://dwny3nam0qvip" path="res://Entities/Player/MachineGun.tscn" id="6_t38ms"]
@@ -33,6 +34,7 @@ curve = SubResource("Curve_5orbf")
 transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.0329107, -0.0751095)
 mesh = ExtResource("3_1des2")
 skeleton = NodePath("../..")
+surface_material_override/2 = ExtResource("4_lmeus")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
 transform = Transform3D(0.585, 0, 0, 0, 0.585, 0, 0, 0, 0.585, 0, 0.0329107, -0.0751095)
@@ -80,6 +82,33 @@ transform = Transform3D(-1.05318, -1.10982, 1.33757e-07, -1.10982, 1.05318, 0, -
 
 [node name="Gun2" parent="Car/Machine_Guns" instance=ExtResource("6_t38ms")]
 transform = Transform3D(-1.0533, 1.10971, -2.31024e-07, 1.10971, 1.0533, 0, 1.59044e-07, -1.67562e-07, -1.53, 0.549712, 0.606398, -2.26059e-08)
+
+[node name="Lights" type="Node3D" parent="Car"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45, 0)
+
+[node name="BackLight1" type="OmniLight3D" parent="Car/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.476659, 0.254335, -1.71774)
+light_color = Color(0.822085, 0, 0.129375, 1)
+omni_range = 0.645366
+
+[node name="BackLight2" type="OmniLight3D" parent="Car/Lights"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.512851, 0.254335, -1.71774)
+light_color = Color(0.822085, 0, 0.129375, 1)
+omni_range = 0.645366
+
+[node name="FrontLight1" type="SpotLight3D" parent="Car/Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.999851, -0.0172604, 0, 0.0172604, -0.999851, 0.476659, 0.616345, 1.14259)
+light_energy = 8.315
+light_indirect_energy = 2.678
+spot_range = 35.093
+spot_angle = 15.53
+
+[node name="FrontLight2" type="SpotLight3D" parent="Car/Lights"]
+transform = Transform3D(1, 0, 0, 0, -0.999851, -0.0172604, 0, 0.0172604, -0.999851, -0.478421, 0.616345, 1.14259)
+light_energy = 8.315
+light_indirect_energy = 2.678
+spot_range = 35.093
+spot_angle = 15.53
 
 [node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("target")]
 transform = Transform3D(-0.999906, 0.00113331, 0.0136535, 0.00455864, 0.96731, 0.253558, -0.0129198, 0.253596, -0.967224, 0.0421485, 1.79724, -2.78664)

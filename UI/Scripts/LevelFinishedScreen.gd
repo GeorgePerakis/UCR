@@ -27,4 +27,4 @@ func _on_next_level_pressed():
 	GameManager.enemy_deaths = 0
 	GameManager.enemy_spawns = 0
 	GameManager.current_enemy_ammount = 0
-	get_tree().change_scene_to_file("res://Levels/Level2/Level.tscn")
+	get_tree().change_scene_to_file("res://Levels/Level2/Level2.tscn")

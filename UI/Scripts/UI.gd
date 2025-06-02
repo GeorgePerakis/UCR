@@ -1,8 +1,8 @@
 extends Control
 
 @onready var number_of_drones_killed: RichTextLabel = $"HBoxContainer/MarginContainer/Number of Drones Killed"
-@onready var label: RichTextLabel = $HBoxContainer/RichTextLabel
 @onready var level_finished_screen: Control = $"../LevelFinishedScreen"
+@onready var time_remaining: RichTextLabel = $HBoxContainer/MarginContainer2/TimeRemaining
 
 var time_left: float = 60
 var countdown_active: bool = true
@@ -25,8 +25,8 @@ func _on_enemy_died():
 	number_of_drones_killed.text = str(GameManager.enemy_deaths)
 
 func update_label():
-	if label:
-		label.text = " %.2f" % time_left
+	if time_remaining:
+		time_remaining.text = " %.2f" % time_left
 
 func _on_countdown_finished():
 	visible = false
